@@ -14,4 +14,9 @@ function getComputerChoice() {
   }
 }
 
+function getHumanChoice() {
+  const choice = prompt('Make your choice (rock, paper or scissors):');
+  return choice;
+}
 
+console.log(getHumanChoice());
