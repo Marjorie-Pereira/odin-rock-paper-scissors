@@ -1,3 +1,5 @@
+let computerScore = 0;
+let humanScore = 0;
 function getComputerChoice() {
   const choice = Math.floor(Math.random() * 3);
 
@@ -21,6 +23,7 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
   console.log("Computer chose: ", computerChoice);
+  if (!humanChoice) return;
   if (humanChoice.toLowerCase() === computerChoice) {
     console.log("No one wins");
     return;
@@ -54,9 +57,33 @@ function playRound(humanChoice, computerChoice) {
         console.log("Scissors beats paper, you win");
       }
       break;
+    default:
+      console.log("Invalid input");
+      break;
   }
   console.log(`Computer: ${computerScore}. Human: ${humanScore}`);
 }
 
+function playGame() {
+  console.log("Starting game of rock, paper and scissors.");
 
+  for (let i = 0; i < 5; i++) {
+    const humanChoice = getHumanChoice();
+    if (!humanChoice) {
+      console.log("Interrupting game");
+      return;
+    }
+    const computerChoice = getComputerChoice();
 
+    playRound(humanChoice, computerChoice);
+  }
+
+  if (humanScore === computerScore) {
+    console.log("Both scored the same, no one wins. End.");
+    return;
+  }
+  const winner = humanScore > computerScore ? "Human" : "Computer";
+  console.log("The winner is the", winner);
+}
+
+playGame();
